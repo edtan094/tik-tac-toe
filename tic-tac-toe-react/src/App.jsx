@@ -1,7 +1,22 @@
+import './App.css';
+
+
 function App() {
   return (
     <>
-      <h1>Tic Tac Toe</h1>
+      <div className='container'>
+        <div className='row justify-center'>
+          <div className='square'></div>
+          <div className='square'></div>
+          <div className='square'></div>
+          <div className='square'></div>
+          <div className='square'></div>
+          <div className='square'></div>
+          <div className='square'></div>
+          <div className='square'></div>
+          <div className='square'></div>
+        </div>
+      </div>
     </>
   );
 }

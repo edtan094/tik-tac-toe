@@ -1,0 +1,19 @@
+.row {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.square{
+  height: 150px;
+  width: 150px;
+  border: solid 1px;
+}
+
+.container{
+  width: 456px;
+  margin: 100px auto;
+}
