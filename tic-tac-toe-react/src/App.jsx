@@ -4,49 +4,48 @@ import React, {useState, useEffect} from 'react';
 
 function App() {
   const [player, setPlayer] = useState("X")
-  const [row1, setRow1] = useState([])
-  const [row2, setRow2] = useState([])
-  const [row3, setRow3] = useState([])
-
+  const [row, setRow] = useState([null, null, null, null, null, null, null, null, null])
 
   const userInput = (event) => {
-    console.log(player)
-    console.log(event.target.className)
-    console.log(row1)
-    if(event.target.className === "row1"){
-      setRow1([...row1, player])
-    }
-    if(event.target.className === "row2"){
-      setRow2([...row2, player])
-    }
-    if(event.target.className === "row3"){
-      setRow3([...row3, player])
-    }
-    if(player === "X"){
-      setPlayer("O")
-    }
-    if(player === "O"){
-      setPlayer("X")
+    console.log("before", row)
+    console.log("player", player)
+    console.log("event", event)
+    console.log("id", event.target.id)
+    if (event.target.className === "square") {
+      row[event.target.id] = player
+      setRow(row)
+
+      if (player === "X") {
+        setPlayer("O")
+      }
+      if (player === "O") {
+        setPlayer("X")
+      }
     }
   }
 
-  return (
-    <>
-      <div className='container'>
-        <div className='row justify-center'>
-          <button onClick={userInput} className='row1'>{row1[0] ? row1[0] : null}</button>
-          <button onClick={userInput} className='row1'>{row1[1] ? row1[1] : null}</button>
-          <button onClick={userInput} className='row1'>{row1[2] ? row1[2] : null}</button>
-          <button onClick={userInput} className='row2'>{row2[0] ? row2[0] : null}</button>
-          <button onClick={userInput} className='row2'>{row2[1] ? row2[1] : null}</button>
-          <button onClick={userInput} className='row2'>{row2[2] ? row2[2] : null}</button>
-          <button onClick={userInput} className='row3'>{row3[0] ? row3[0] : null}</button>
-          <button onClick={userInput} className='row3'>{row3[1] ? row3[1] : null}</button>
-          <button onClick={userInput} className='row3'>{row3[2] ? row1[2] : null}</button>
+  // debugging
+  useEffect(()=> {
+    console.log("after", row)
+  })
+
+    return (
+      <>
+        <div className='container'>
+          <div className='row justify-center'>
+            {row[0] ? <button id={0}>{row[0]}</button> : <button onClick={userInput} className="square" id={0}></button>}
+            {row[1] ? <button id={1}>{row[1]}</button> : <button onClick={userInput} className="square" id={1}></button>}
+            {row[2] ? <button id={2}>{row[2]}</button> : <button onClick={userInput} className="square" id={2}></button>}
+            {row[3] ? <button id={3}>{row[3]}</button> : <button onClick={userInput} className="square" id={3}></button>}
+            {row[4] ? <button id={4}>{row[4]}</button> : <button onClick={userInput} className="square" id={4}></button>}
+            {row[5] ? <button id={5}>{row[5]}</button> : <button onClick={userInput} className="square" id={5}></button>}
+            {row[6] ? <button id={6}>{row[6]}</button> : <button onClick={userInput} className="square" id={6}></button>}
+            {row[7] ? <button id={7}>{row[7]}</button> : <button onClick={userInput} className="square" id={7}></button>}
+            {row[8] ? <button id={8}>{row[8]}</button> : <button onClick={userInput} className="square" id={8}></button>}
+          </div>
         </div>
-      </div>
-    </>
-  );
-}
+      </>
+    );
+  }
 
 export default App;
