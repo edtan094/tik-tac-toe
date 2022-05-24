@@ -4,14 +4,11 @@ import React, {useState, useEffect} from 'react';
 
 function App() {
   const [player, setPlayer] = useState("X")
-  const [row, setRow] = useState([null, null, null, null, null, null, null, null, null])
+  const [row, setRow] = useState(Array(9).fill(null))
+  const [winner, setWinner] = useState(null)
 
   const userInput = (event) => {
-    console.log("before", row)
-    console.log("player", player)
-    console.log("event", event)
-    console.log("id", event.target.id)
-    if (event.target.className === "square") {
+    if (event.target.className === "square" && !winner) {
       row[event.target.id] = player
       setRow(row)
 
@@ -23,15 +20,40 @@ function App() {
       }
     }
   }
+  function checkWinCondition(squares){
+    const lines = [
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6]
+    ];
+    for(let i = 0; i < lines.length; i++){
+      const [a,b,c] = lines[i]
+      if(squares[a] && squares[a] === squares[b] && squares[b] === squares[c]){
+        setWinner(squares[a])
+      }
+    }
+  }
+  useEffect(()=>{
+    checkWinCondition(row)
+  },[player])
 
-  // debugging
-  useEffect(()=> {
-    console.log("after", row)
-  })
+  const handleReset = ()=>{
+    setWinner(null)
+    setRow(Array(9).fill(null))
+    setPlayer("X")
+  }
 
     return (
       <>
         <div className='container'>
+          {winner
+            ? <><div>The winner is {winner}</div><button onClick={handleReset}>Click to Reset!</button> </>
+          : null}
           <div className='row justify-center'>
             {row[0] ? <button id={0}>{row[0]}</button> : <button onClick={userInput} className="square" id={0}></button>}
             {row[1] ? <button id={1}>{row[1]}</button> : <button onClick={userInput} className="square" id={1}></button>}
