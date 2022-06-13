@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/styles.scss'
+import WinCounter from './WinCounter';
 
 function Game() {
   const [player, setPlayer] = useState("X")
   const [row, setRow] = useState(Array(9).fill(null))
   const [winner, setWinner] = useState(null)
+  const [winCount, setWinCount] = useState({X: 0, O: 0})
 
   const userInput = (event) => {
     if (event.target.className === "square" && !winner) {
@@ -37,6 +39,7 @@ function Game() {
       }
     }
   }
+
   useEffect(() => {
     checkWinCondition(row)
   }, [player, row])
@@ -50,6 +53,7 @@ function Game() {
   return (
     <>
       <div className='container'>
+        <WinCounter winner={winner} winCount={winCount} setWinCount={setWinCount}/>
         <div className='row justify-center'>
           {row[0] ? <button id={0}>{row[0]}</button> : <button onClick={userInput} className="square" id={0}></button>}
           {row[1] ? <button id={1}>{row[1]}</button> : <button onClick={userInput} className="square" id={1}></button>}
