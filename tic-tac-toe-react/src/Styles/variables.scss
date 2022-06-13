@@ -1,0 +1,12 @@
+$themeColor: rgb(66, 189, 238);
+
+$themeFont: Arial, Helvetica, sans-serif;
+
+
+@mixin squareStyle($backgroundColor) {
+  height: 150px;
+  width: 150px;
+  border: solid 1px;
+  font-size: 60px;
+  background-color: $backgroundColor
+}
