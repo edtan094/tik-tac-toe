@@ -1,0 +1,44 @@
+@import './variables.scss';
+
+
+body{
+  font-family: $themeFont;
+}
+
+h1{
+  color: black
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+div.row>button {
+  @include squareStyle($themeColor)
+}
+
+.container {
+  width: 456px;
+  margin: 100px auto;
+}
+
+.reset-button{
+  background-color: white;
+  border: 1px solid;
+  height: 50px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.reset-button:hover{
+  background-color: $themeColor;
+}
+
+.winner{
+  margin-top: 30px;
+}
