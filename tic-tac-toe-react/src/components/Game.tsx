@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import '../Styles/styles.scss'
 import WinCounter from './WinCounter';
 
-const gameRows: string[] = []
 
 interface Winners {
   X: number;
@@ -11,7 +10,7 @@ interface Winners {
 
 function Game() {
   const [player, setPlayer] = useState<string>("X")
-  const [row, setRow] = useState<typeof gameRows>(Array(9).fill(null))
+  const [row, setRow] = useState<string[]>(Array(9).fill(null))
   const [winner, setWinner] = useState<string>(null)
   const [winCount, setWinCount] = useState<Winners>({X: 0, O: 0})
 
